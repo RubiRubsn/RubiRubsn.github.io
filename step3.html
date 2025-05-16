@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Step 3: Beet-Infos</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+        max-width: 600px;
+        margin: auto;
+      }
+      .beet {
+        border: 1px solid #ccc;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+      }
+      input,
+      button {
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Schritt 3: Beet-Infos</h1>
+    <div id="bedsContainer"></div>
+    <button onclick="goNext()">Weiter</button>
+
+    <script>
+      const count = parseInt(sessionStorage.getItem("beetCount"), 10) || 0;
+      if (!count) {
+        window.location.href = "index.html";
+      }
+
+      const container = document.getElementById("bedsContainer");
+      // Dynamisch Felder anlegen
+      for (let i = 0; i < count; i++) {
+        const div = document.createElement("div");
+        div.className = "beet";
+        div.innerHTML = `
+        <h2>Beet ${i}</h2>
+        <label>Name:</label>
+        <input type="text" id="name_${i}" value="${i}">
+        <label>relay_entity:</label>
+        <input type="text" id="relay_${i}" value="switch.">
+      `;
+        container.appendChild(div);
+      }
+
+      function goNext() {
+        const beds = [];
+        for (let i = 0; i < count; i++) {
+          const name = document.getElementById(`name_${i}`).value.trim();
+          const relay = document.getElementById(`relay_${i}`).value.trim();
+          if (!name || !relay) {
+            alert(`Bitte alle Felder in Beet ${i} ausfüllen.`);
+            return;
+          }
+          beds.push({ name, relay });
+        }
+        sessionStorage.setItem("bedsInfo", JSON.stringify(beds));
+        window.location.href = "step4.html";
+      }
+    </script>
+  </body>
+</html>

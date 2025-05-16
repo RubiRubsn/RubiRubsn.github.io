@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Step 2: Wetter-Entität</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+        max-width: 400px;
+        margin: auto;
+      }
+      input,
+      button {
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Schritt 2</h1>
+    <label for="weatherEntity">Wetter-Entität:</label>
+    <input type="text" id="weatherEntity" value="weather." />
+    <button onclick="goNext()">Weiter</button>
+
+    <script>
+      // Optional: prüfen, ob Beet-Anzahl da ist
+      if (!sessionStorage.getItem("beetCount")) {
+        window.location.href = "index.html";
+      }
+
+      function goNext() {
+        const w = document.getElementById("weatherEntity").value.trim();
+        if (!w) {
+          alert("Bitte eine Wetter-Entität eingeben.");
+          return;
+        }
+        sessionStorage.setItem("weatherEntity", w);
+        window.location.href = "step3.html";
+      }
+    </script>
+  </body>
+</html>

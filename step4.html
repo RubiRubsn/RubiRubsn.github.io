@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Step 4: Karten-Auswahl</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+        max-width: 400px;
+        margin: auto;
+        text-align: center;
+      }
+      button {
+        width: 80%;
+        padding: 0.5rem;
+        margin: 1rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Schritt 4: Karte</h1>
+    <p>
+      Möchten Sie die Position der Beete auf einer selbst hochgeladenen Karte
+      festlegen oder die Standard-Karte benutzen?
+    </p>
+    <button onclick="choose('custom')">Selbst festlegen</button>
+    <button onclick="choose('standard')">Standard benutzen</button>
+
+    <script>
+      function choose(mode) {
+        sessionStorage.setItem("mapMode", mode);
+        // Weiter zu Deiner nächsten Seite, die wir später bauen.
+        window.location.href = "next.html";
+      }
+    </script>
+  </body>
+</html>
